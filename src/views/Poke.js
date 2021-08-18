@@ -27,6 +27,8 @@ export default class Poke extends Component {
         .then(data=>{
             this.setState({
                 poke: data,
+                abilities: data.abilities[0].ability.name,
+                sprites:data.sprites.front_shiny,
                 badRound:false
             }, ()=>console.log(this.state.poke))
         })
@@ -46,7 +48,7 @@ export default class Poke extends Component {
                         <Field name="name" className="form-control"/>
                         {errors.season && touched.season ? (<div style={{color:'red'}}>{errors.season}</div>):null}
 
-                        {/* <img src={this.state.poke.sprites.front_shiny}/> */}
+                        <img src={this.state.sprites}/>
 
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </Form>
@@ -56,14 +58,14 @@ export default class Poke extends Component {
                     <thead>
                         <tr>
                         <th>Name</th>
-                        {/* <th>Abilities</th> */}
+                        <th>Abilities</th>
                         <th>Base Experience</th>
                         </tr>
                     </thead>
                     <tbody> 
                         <tr>
                             <td>{this.state.poke.name}</td>
-                            {/* <td>{this.abilities}</td> */}
+                            <td>{this.state.abilities}</td>
                             <td>{this.state.poke.base_experience}</td>
                         </tr>
                     </tbody>
